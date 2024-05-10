@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../services/authentication_service.dart';
+import '../services/mock_authentication_service.dart';
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {
                   final String email = _emailController.text;
                   final String password = _passwordController.text;
-                  Provider.of<AuthenticationService>(context, listen: false)
+                  Provider.of<MockAuthenticationService>(context, listen: false)
                       .login(email, password);
                 },
                 child: Text('Login'),

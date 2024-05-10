@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class CameraScreen extends StatefulWidget{
+class CameraScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
-    Text("Camera screen");
+    return Placeholder();
   }
 }
