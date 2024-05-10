@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/mock_authentication_service.dart';
+import 'package:prepasto/screens/camera_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
@@ -28,11 +29,24 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   final String email = _emailController.text;
                   final String password = _passwordController.text;
-                  Provider.of<MockAuthenticationService>(context, listen: false)
+                  bool successfulLogin = await Provider.of<MockAuthenticationService>(context, listen: false)
                       .login(email, password);
+                  if (successfulLogin) {
+                    print("Successful login");
+                    Navigator.pushReplacement(context, 
+                    MaterialPageRoute(builder: (context) => CameraScreen()),
+                    );
+                  } else {
+                    print("Login failed");
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Failed to login in, please try again.'),
+                        backgroundColor: Colors.red,),
+                    );
+                  }
                 },
                 child: Text('Login'),
               ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../services/authentication_service.dart';
+import '../services/mock_authentication_service.dart';
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -28,11 +28,22 @@ class SignUpScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   final String email = _emailController.text;
                   final String password = _passwordController.text;
-                  Provider.of<AuthenticationService>(context, listen: false)
-                      .signUp(email, password);
+                  bool signupSuccess = await Provider.of<MockAuthenticationService>(context, listen: false).signUp(email, password);
+                    if (signupSuccess) {
+                      print("Successful sign up!");
+                      Navigator.pop(context);
+                    } else {
+                      print("Sign up failed");
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Sign up failed, please try again.'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
                 },
                 child: Text('Sign Up'),
               ),

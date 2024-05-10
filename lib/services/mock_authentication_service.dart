@@ -14,11 +14,13 @@ class MockAuthenticationService extends AuthenticationService {
   Future<bool> login(String email, String password) async {
     await Future.delayed(Duration(seconds: 1));  // Simulate network delay
     if (email == "test@example.com" && password == "password123") {
+      print("good login credentials");
       await _storage.write(key: 'app_token', value: 'mocked-token');
       _isLoggedIn = true;
       notifyListeners();
       return true;
     } else {
+      print("bad login credentials");
       return false;
     }
   }
@@ -26,8 +28,11 @@ class MockAuthenticationService extends AuthenticationService {
   @override
   Future<bool> signUp(String email, String password) async {
     await Future.delayed(Duration(seconds: 1));  // Simulate network delay
-    // Assume all sign-ups are successful
-    return true;
+    if (email == "test@example.com" && password == "password123") {
+      return true;
+    } else{
+      return false;
+    }
   }
 
   @override
