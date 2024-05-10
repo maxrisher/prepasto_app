@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:prepasto/services/authentication_service.dart';
 import 'screens/start_screen.dart';
+import 'screens/camera_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create:(context) => AuthenticationService(),
+    child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,7 +34,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      home: Consumer<AuthenticationService>(
+        builder: (context, authService, child){
+          if (authService.isLoggedIn){
+            return CameraScreen();
+          } else {
+            return StartScreen();
+          }
+        }
+      )
     );
   }
 }

@@ -3,8 +3,11 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/material.dart';
 
-class AuthenticationService {
+class AuthenticationService with ChangeNotifier {
   final _storage = FlutterSecureStorage();
+  bool _isLoggedIn = false;
+
+  bool get isLoggedIn => _isLoggedIn;
 
   Future<bool> login(String email, String password) async {
     try {
@@ -22,6 +25,7 @@ class AuthenticationService {
         // Store the token and other necessary data
         var django_auth_token = jsonDecode(response.body)['token'];
         await _storage.write(key: 'app_token', value: django_auth_token);
+        _isLoggedIn = true;
         notifyListeners();
         return true;
       }
@@ -34,14 +38,15 @@ class AuthenticationService {
 
   Future<bool> signUp(String email, String password) async {
     try{
-      var response = await http.post(Uri.parse(uri),
-      headers: <String, String>{
+      var response = await http.post(
+        Uri.parse('https://your-backend-url.com/api/signup/'),
+        headers: <String, String>{
         'Content-Type': 'application/json',
-      },
-      body: jsonEncode(<String, String>{
-        'email': email,
-        'password': password,
-      }),
+        },
+        body: jsonEncode(<String, String>{
+          'email': email,
+          'password': password,
+        }),
       );
       if (response.statusCode == 200){
         return true;
@@ -52,11 +57,11 @@ class AuthenticationService {
       return false;
     }
   }
+
   Future<void> logOut() async{
-    _storage.delete(key: 'django_auth_token');
-    notifyListeners();
+    _storage.delete(key: 'django_auth_token'); // delete our auth token
+    _isLoggedIn = false; // set the logged in variable
+    notifyListeners(); // Tell subscribers that we're logged out
     print("logged out");
   }
 }
-
-

@@ -3,7 +3,7 @@ import 'login_screen.dart';
 import 'signup_screen.dart';
 import '../widgets/start_screen_button.dart';
 
-class HomeScreen extends StatelessWidget {
+class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
