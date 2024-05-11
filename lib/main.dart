@@ -4,13 +4,13 @@ import 'package:prepasto/services/mock_authentication_service.dart';
 import 'screens/start_screen.dart';
 import 'screens/camera_screen.dart';
 import 'package:provider/provider.dart';
-import 'models/diary_model.dart';
+import 'models/diary_models.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create:(context) => MockAuthenticationService()),
-      ChangeNotifierProvider(create: (context) => DiaryModel()),
+      ChangeNotifierProvider(create: (context) => DiaryProvider()),
     ],
     child: MyApp()
     ),
