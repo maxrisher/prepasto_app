@@ -3,7 +3,22 @@ import 'package:prepasto/services/diary_service.dart';
 import 'package:provider/provider.dart';
 import 'diary_entry_detail_screen.dart';
 
-class DiaryLogScreen extends StatelessWidget{
+class DiaryLogScreen extends StatefulWidget{
+  const DiaryLogScreen({Key? key}) : super(key:key);
+
+  @override
+  State<DiaryLogScreen> createState() => _DiaryLogScreenState();
+}
+
+
+class _DiaryLogScreenState extends State<DiaryLogScreen>{
+  @override
+  void initState(){
+    super.initState();
+    final diaryProvider = Provider.of<DiaryService>(context, listen:false);
+    diaryProvider.fetchDiaryForToday();
+  }
+
   @override
   Widget build(BuildContext context){
     return Navigator(
@@ -21,7 +36,7 @@ class DiaryLogScreen extends StatelessWidget{
 class NutritionLogHome extends StatelessWidget{
   @override
   Widget build(BuildContext context){
-    Provider.of<DiaryService>(context, listen:false).fetchDiaryForToday();
+    // Provider.of<DiaryService>(context, listen:false).fetchDiaryForToday();
 
     return Scaffold(
       appBar: AppBar(
