@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prepasto/screens/main_screen.dart';
 import 'package:prepasto/services/mock_authentication_service.dart';
 import 'screens/start_screen.dart';
 import 'screens/camera_screen.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       home: Consumer<MockAuthenticationService>(
         builder: (context, authService, child){
           if (authService.isLoggedIn){
-            return CameraScreen();
+            return MainScreen();
           } else {
             return StartScreen();
           }

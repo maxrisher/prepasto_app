@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:prepasto/screens/main_screen.dart';
 import 'package:provider/provider.dart';
 import '../services/mock_authentication_service.dart';
-import 'package:prepasto/screens/camera_screen.dart';
+import 'package:prepasto/screens/main_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
@@ -37,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                   if (successfulLogin) {
                     print("Successful login");
                     Navigator.pushReplacement(context, 
-                    MaterialPageRoute(builder: (context) => CameraScreen()),
+                    MaterialPageRoute(builder: (context) => MainScreen()),
                     );
                   } else {
                     print("Login failed");

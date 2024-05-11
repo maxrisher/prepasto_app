@@ -23,8 +23,8 @@ class AuthenticationService with ChangeNotifier {
       );
       if (response.statusCode == 200) {
         // Store the token and other necessary data
-        var django_auth_token = jsonDecode(response.body)['token'];
-        await _storage.write(key: 'app_token', value: django_auth_token);
+        var djangoAuthToken = jsonDecode(response.body)['token'];
+        await _storage.write(key: 'app_token', value: djangoAuthToken);
         _isLoggedIn = true;
         notifyListeners();
         return true;
@@ -59,7 +59,7 @@ class AuthenticationService with ChangeNotifier {
   }
 
   Future<void> logOut() async{
-    _storage.delete(key: 'django_auth_token'); // delete our auth token
+    _storage.delete(key: 'djangoAuthToken'); // delete our auth token
     _isLoggedIn = false; // set the logged in variable
     notifyListeners(); // Tell subscribers that we're logged out
     print("logged out");
