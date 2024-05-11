@@ -43,7 +43,7 @@ class Meal {
       name: json['name'],
       calories: json['calories'],
       grams: json['grams'],
-      mealStartTime: json['meal_start_time'],
+      mealStartTime: DateTime.parse(json['meal_start_time']),
       ingredients: ingredientList,
     );
   }
@@ -52,7 +52,7 @@ class Meal {
 class Ingredient{
   final String id;
   final String name;
-  final double grams;
+  final int grams;
   final double calories;
   final double caloriesPer100Grams;
 
@@ -62,8 +62,8 @@ class Ingredient{
     return Ingredient(
       id: json['id'],
       name: json['name'],
-      grams: json['totalMass'],
-      calories: json['totalCalories'],
+      grams: json['grams'],
+      calories: json['calories'],
       caloriesPer100Grams: json['calories_per_100_grams'],
     );
   }

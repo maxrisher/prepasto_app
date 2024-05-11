@@ -15,7 +15,7 @@ class BackendApiService{
     String url = "$baseUrl/diaries/date/$formattedDate";
 
     final response = await http.get(
-      Uri.parse('https://mocki.io/v1/cf02fa82-d34c-4f03-b0af-2d6e99943817'), // returns json in the format that we want
+      Uri.parse('https://mocki.io/v1/f1642bdf-104d-44e9-bb34-407535d89cd0'), // returns json in the format that we want
       headers: {
         'Authorization': 'Bearer $_token',
         'Content-Type': 'application/json',
