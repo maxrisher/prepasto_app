@@ -4,11 +4,17 @@ import 'package:prepasto/services/mock_authentication_service.dart';
 import 'screens/start_screen.dart';
 import 'screens/camera_screen.dart';
 import 'package:provider/provider.dart';
+import 'models/diary_model.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create:(context) => MockAuthenticationService(),
-    child: MyApp()));
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create:(context) => MockAuthenticationService()),
+      ChangeNotifierProvider(create: (context) => DiaryModel()),
+    ],
+    child: MyApp()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

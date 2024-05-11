@@ -21,7 +21,7 @@ class NutritionLogHome extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('2500 - 500 = 2000') // Our running calorie total
+        title: Text('May 10 2024') // The selected date
         ),
       body: Center(
         child: ListView.builder(
