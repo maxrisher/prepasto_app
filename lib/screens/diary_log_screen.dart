@@ -3,15 +3,15 @@ import 'package:prepasto/services/diary_service.dart';
 import 'package:provider/provider.dart';
 import 'diary_entry_detail_screen.dart';
 
+// We use a stateful widget so that we can get any initial diary entry data
 class DiaryLogScreen extends StatefulWidget{
-  const DiaryLogScreen({Key? key}) : super(key:key);
-
   @override
   State<DiaryLogScreen> createState() => _DiaryLogScreenState();
 }
 
 
 class _DiaryLogScreenState extends State<DiaryLogScreen>{
+  //This is our initialization method, here we fetch any existing diary data for this screen. This is only called when we insert this widget into the widget tree (when we navigate to it)
   @override
   void initState(){
     super.initState();
