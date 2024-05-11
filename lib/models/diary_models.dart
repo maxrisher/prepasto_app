@@ -14,7 +14,7 @@ class Diary{
 
   Diary({required this.date, required this.calorieTotal, this.meals = const []});
 
-  factory Diary.fromJson(Map<String, dyanmic> json){
+  factory Diary.fromJson(Map<String, dynamic> json) {
     var list = json['meals'] as List;
     List<Meal> mealsList = list.map((i) => Meal.fromJson(i)).toList();
     return Diary(
