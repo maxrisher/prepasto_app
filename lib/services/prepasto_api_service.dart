@@ -8,6 +8,8 @@ class BackendApiService{
 
   BackendApiService(this._token);
 
+  String get token => _token;
+
 // Should return a JSON of all food entries in a given day
   Future<List<dynamic>> fetchDiaryForDate(String date) async {
     final response = await http.get(
